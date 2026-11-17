@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#24150e">
+  <meta name="description" content="Nono & Grills — fresh fura de nono, grilled favourites, smoothies and more. Browse the menu and order.">
+  <title>Nono & Grills | Fura, Grills & More</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="announcement">Freshly prepared · Lagos & worldwide delivery</div>
+  <header class="site-header">
+    <a class="brand" href="#"><img src="assets/logo.png" alt="Fura De Nono & Grills logo"><span>Nono <i>&</i> Grills</span></a>
+    <nav><a href="#menu">Menu</a><a href="#story">Our story</a><a href="#order">How to order</a></nav>
+    <a class="header-order" href="#menu">Explore menu <span>↗</span></a>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-copy">
+        <p class="eyebrow"><span></span> A taste worth coming back for</p>
+        <h1>Tradition in<br><em>every sip.</em><br>Fire in every bite.</h1>
+        <p class="hero-intro">From our signature fura de nono to beautifully grilled favourites, discover comforting Nigerian flavours made to be enjoyed.</p>
+        <div class="hero-actions"><a class="btn primary" href="#menu">Explore our menu <b>↓</b></a><a class="text-link" href="#story">Get to know us <span>↗</span></a></div>
+        <div class="hero-note"><span class="note-mark">✳</span><span><strong>Our signature</strong><br>Fura de Nono, made the way you love it.</span></div>
+      </div>
+      <div class="hero-art">
+        <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+        <div class="hero-photo"><img src="assets/fura-from-menu.jpg" alt="Fura de nono shown in the supplied restaurant menu"></div>
+        <div class="floating-tag"><span>✦</span> Made with care<br><small>Served with love</small></div>
+        <div class="hero-stamp">FRESH<br><b>&</b><br>FLAVOURFUL</div>
+      </div>
+    </section>
+
+    <section class="ticker"><span>FURA DE NONO</span><b>✳</b><span>GRILLS</span><b>✳</b><span>SMOOTHIES</span><b>✳</b><span>GOOD FOOD, GOOD MOOD</span><b>✳</b></section>
+
+    <section class="menu-section section-pad" id="menu">
+      <div class="section-heading"><div><p class="eyebrow">The good stuff</p><h2>Find your <em>favourite.</em></h2></div><p>Explore the menu, add your cravings to your bag, and send your order to us.</p></div>
+      <div class="filters" role="tablist" aria-label="Menu categories">
+        <button class="filter active" data-filter="all">All favourites</button>
+        <button class="filter" data-filter="fura">Fura de Nono</button>
+        <button class="filter" data-filter="grills">Grills</button>
+        <button class="filter" data-filter="sides">Sides & more</button>
+      </div>
+      <div class="menu-grid" id="menuGrid"></div>
+      <p class="menu-footnote">Menu and prices shown are based on the menu artwork you shared. Please confirm availability before payment.</p>
+    </section>
+
+    <section class="feature section-pad" id="story">
+      <div class="feature-visual"><div class="feature-visual-inner"><img src="assets/grilled-fish-from-menu.jpg" alt="Grilled fish from the supplied Nono & Grills menu"><span>THE HEART OF OUR MENU</span><strong>Fura<br>de Nono</strong><small>Our signature Nigerian classic</small></div></div>
+      <div class="feature-copy"><p class="eyebrow">A little about us</p><h2>Rooted in tradition.<br><em>Made for today.</em></h2><p>At Nono & Grills, our signature fura de nono takes centre stage, alongside satisfying grills, refreshing smoothies and treats for every kind of craving.</p><p>We bring familiar flavours and thoughtful presentation together, so every order feels special.</p><a class="text-link" href="#menu">See what’s cooking <span>↗</span></a></div>
+    </section>
+
+    <section class="order-band section-pad" id="order"><div><p class="eyebrow">Your next favourite is a few clicks away</p><h2>Ready to enjoy<br><em>something lovely?</em></h2></div><div class="order-side"><p>Add your selections to the bag and send your order directly to our team on WhatsApp. Online card/bank payment will be activated after the payment account is connected.</p><a class="btn light" href="#menu">Start your order <b>↗</b></a></div></section>
+  </main>
+
+  <footer><div class="footer-brand"><img src="assets/logo.png" alt=""><span>Nono & Grills</span></div><p>Fura de Nono · Grills · Smoothies · Sweet treats</p><small>© <span id="year"></span> Nono & Grills. Made with care.</small></footer>
+
+  <button class="cart-fab" id="cartFab" aria-label="Open your order bag">Your bag <b id="cartCount">0</b></button>
+  <div class="cart-backdrop" id="cartBackdrop"></div>
+  <aside class="cart-panel" id="cartPanel" aria-label="Your order bag">
+    <div class="cart-head"><div><p class="eyebrow">Almost yours</p><h3>Your bag</h3></div><button id="closeCart" aria-label="Close bag">×</button></div>
+    <div id="cartItems" class="cart-items"><p class="empty-cart">Your bag is waiting for something delicious.</p></div>
+    <div class="cart-bottom"><div class="total-line"><span>Subtotal</span><strong id="cartTotal">₦0</strong></div><button class="btn primary full" id="whatsappOrder">Continue on WhatsApp ↗</button><small>Delivery fee, where applicable, will be confirmed by our team.</small></div>
+  </aside>
+  <script src="app.js"></script>
+</body>
+</html>
