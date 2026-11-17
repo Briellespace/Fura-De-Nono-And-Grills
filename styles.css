@@ -5,3 +5,9 @@
 .feature-visual-inner{position:relative;width:100%;height:100%;min-height:330px;display:flex;flex-direction:column;align-items:center;justify-content:center;overflow:hidden}
 .feature-visual-inner img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.30;mix-blend-mode:screen}
 .feature-visual-inner span,.feature-visual-inner strong,.feature-visual-inner small{position:relative;text-shadow:0 2px 12px #24150e}
+
+/* Full Fura De Nono & Grills brand lockup */
+.brand .brand-name{display:flex;flex-direction:column;line-height:1.02;font-size:19px;white-space:nowrap}
+.brand .brand-name span:last-child{font-size:.76em;letter-spacing:.12em;margin-top:3px}
+@media(max-width:800px){.brand .brand-name{font-size:16px}}
+@media(max-width:390px){.brand .brand-name{font-size:14px}.site-header{padding:0 4%}.header-order{font-size:10px;padding:10px 11px}}

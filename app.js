@@ -42,7 +42,7 @@ document.getElementById("whatsappOrder").onclick=()=>{
  if(!cart.length){alert("Add something to your bag first.");return;}
  const total=cart.reduce((s,x)=>s+items.find(i=>i.id===x.id).price*x.qty,0);
  const lines=cart.map(c=>{const i=items.find(x=>x.id===c.id);return `${c.qty} x ${i.name} — ${naira(i.price*c.qty)}`});
- const msg=`Hello Nono & Grills! I'd like to place an order:\n\n${lines.join("\n")}\n\nSubtotal: ${naira(total)}\nPlease confirm availability, delivery fee and payment details.`;
+ const msg=`Hello Fura De Nono & Grills! I'd like to place an order:\n\n${lines.join("\n")}\n\nSubtotal: ${naira(total)}\nPlease confirm availability, delivery fee and payment details.`;
  // Replace with the business WhatsApp number after confirming the correct number.
  const whatsappNumber="2348076615521";
  window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,"_blank");
