@@ -1,51 +1,160 @@
+// Fura De Nono & Grills — menu, basket and WhatsApp order flow
+// Prices are copied from the menu artwork supplied by the business owner.
+
+const BUSINESS_NAME = "Fura De Nono & Grills";
+const WHATSAPP_NUMBER = "2348076615521";
+
+const PHOTO = {
+  fura: "assets/fura-from-menu.jpg",
+  salmon: "https://images.unsplash.com/photo-1773969423899-01812e1537f6?auto=format&fit=crop&w=1000&q=82",
+  chicken: "https://images.unsplash.com/photo-1777891258069-454e66f8bedc?auto=format&fit=crop&w=1000&q=82",
+  beef: "https://images.unsplash.com/photo-1741994246814-9caec2a78e07?auto=format&fit=crop&w=1000&q=82",
+  spicyChicken: "https://images.unsplash.com/photo-1755438538504-97119f066871?auto=format&fit=crop&w=1000&q=82",
+  seafood: "https://images.unsplash.com/photo-1779333863055-9aaeb540cc4a?auto=format&fit=crop&w=1000&q=82",
+  cupcakes: "https://images.unsplash.com/photo-1573050435329-27ff3181380c?auto=format&fit=crop&w=1000&q=82",
+  veggieCupcakes: "https://images.pexels.com/photos/34501162/pexels-photo-34501162.jpeg?auto=compress&cs=tinysrgb&w=1000",
+  smoothie: "https://images.unsplash.com/photo-1712056407284-c1eda76e7bcd?auto=format&fit=crop&w=1000&q=82",
+  coffee: "https://images.unsplash.com/photo-1571658734974-e513dfb8b86b?auto=format&fit=crop&w=1000&q=82",
+  packages: "assets/menu-reference.jpg"
+};
+
 const items = [
- {id:1,name:"Fura Milk",category:"fura",price:3500,desc:"Our refreshing signature fura de nono.",symbol:"🥣"},
- {id:2,name:"Fura Milk Extra",category:"fura",price:6000,desc:"A fuller serving for a bigger craving.",symbol:"🥛"},
- {id:3,name:"Fura Milk & Fruits",category:"fura",price:14200,desc:"A fruity twist on a much-loved classic.",symbol:"🥭"},
- {id:4,name:"Fura De Nono Special",category:"fura",price:30000,desc:"A special house-style fura experience.",symbol:"🍶"},
- {id:5,name:"Fura De Nono Shake",category:"fura",price:12000,desc:"A cool, creamy fura shake.",symbol:"🥤"},
- {id:6,name:"Grilled Salmon",category:"grills",price:38000,desc:"A grilled favourite from the menu.",symbol:"🐟"},
- {id:7,name:"Grilled Chicken",category:"grills",price:16600,desc:"Juicy grilled chicken, full of flavour.",symbol:"🍗"},
- {id:8,name:"Grilled Beef",category:"grills",price:7800,desc:"A satisfying grilled beef option.",symbol:"🥩"},
- {id:9,name:"Spicy Chicken",category:"grills",price:9400,desc:"A little heat with a lot of flavour.",symbol:"🍗"},
- {id:10,name:"Seafood Platter",category:"grills",price:66700,desc:"A generous seafood selection.",symbol:"🦐"},
- {id:11,name:"Sweet Cupcakes",category:"sides",price:7500,desc:"A sweet little treat.",symbol:"🧁"},
- {id:12,name:"Veggie Cupcakes",category:"sides",price:6500,desc:"A savoury option from our menu.",symbol:"🥟"},
- {id:13,name:"Smoothies",category:"sides",price:4000,desc:"A refreshing sip for any time.",symbol:"🍹"},
- {id:14,name:"Coffee (By Choice)",category:"sides",price:10000,desc:"Your coffee choice, made to order.",symbol:"☕"}
+  { id: 1, name: "Fura Milk", category: "fura", price: 3500, desc: "Our signature fura de nono — rich, creamy and refreshing.", image: PHOTO.fura, alt: "Fura de nono serving shown in the supplied Fura De Nono & Grills menu" },
+  { id: 2, name: "Fura Milk Extra", category: "fura", price: 6000, desc: "A fuller serving for an even more satisfying fura moment.", image: PHOTO.fura, alt: "Fura de nono serving shown in the supplied menu artwork" },
+  { id: 3, name: "Fura Milk & Fruits", category: "fura", price: 14200, desc: "Our fura favourite with a fruity twist.", image: PHOTO.fura, alt: "Fura de nono serving shown in the supplied menu artwork" },
+  { id: 4, name: "Fura De Nono Special", category: "fura", price: 30000, desc: "A special house-style fura de nono experience.", image: PHOTO.fura, alt: "Fura de nono serving shown in the supplied menu artwork" },
+  { id: 5, name: "Fura De Nono Shake", category: "fura", price: 12000, desc: "A cool, creamy shake inspired by our signature drink.", image: PHOTO.smoothie, alt: "Creamy banana smoothie reference photograph; exact fura shake presentation may differ", reference: true },
+  { id: 6, name: "Grilled Salmon", category: "grills", price: 38000, desc: "Grilled salmon, a seafood favourite.", image: PHOTO.salmon, alt: "Grilled salmon skewers with lime; reference photograph", reference: true },
+  { id: 7, name: "Grilled Chicken", category: "grills", price: 16600, desc: "A juicy grilled chicken favourite.", image: PHOTO.chicken, alt: "Grilled chicken with vegetables; reference photograph", reference: true },
+  { id: 8, name: "Grilled Beef", category: "grills", price: 7800, desc: "A satisfying grilled beef option.", image: PHOTO.beef, alt: "Beef steaks grilling over a flame; reference photograph", reference: true },
+  { id: 9, name: "Spicy Chicken", category: "grills", price: 9400, desc: "Chicken with a bold, spicy finish.", image: PHOTO.spicyChicken, alt: "Seasoned grilled chicken skewers; reference photograph", reference: true },
+  { id: 10, name: "Seafood Platter", category: "grills", price: 66700, desc: "A generous seafood selection for sharing.", image: PHOTO.seafood, alt: "Seafood platter with lobster, shrimp and scallops; reference photograph", reference: true },
+  { id: 11, name: "Sweet Cupcakes", category: "sides", price: 7500, desc: "A sweet little treat for any occasion.", image: PHOTO.cupcakes, alt: "Assorted cupcakes; reference photograph", reference: true },
+  { id: 12, name: "Veggie Cupcakes", category: "sides", price: 6500, desc: "A savoury veggie option from our menu.", image: PHOTO.veggieCupcakes, alt: "Savoury vegetable muffins; reference photograph", reference: true },
+  { id: 13, name: "Smoothies", category: "sides", price: 4000, desc: "A refreshing sip made for your day.", image: PHOTO.smoothie, alt: "Creamy fruit smoothie; reference photograph", reference: true },
+  { id: 14, name: "Coffee (By Choice)", category: "sides", price: 10000, desc: "Choose your coffee preference when ordering.", image: PHOTO.coffee, alt: "Coffee in a ceramic cup; reference photograph", reference: true },
+  { id: 15, name: "Food Packages", category: "sides", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills menu artwork; package options are arranged by order", quoteOnly: true }
 ];
-const naira = n => "₦" + n.toLocaleString("en-NG");
+
+const naira = (amount) => "₦" + amount.toLocaleString("en-NG");
 let cart = [];
 const grid = document.getElementById("menuGrid");
-function renderMenu(filter="all"){
- grid.innerHTML = items.filter(x=>filter==="all"||x.category===filter).map(x=>`
- <article class="menu-card"><div class="food-art ${x.category}" data-symbol="${x.symbol}"></div>
- <div class="card-content"><div class="card-top"><h3>${x.name}</h3><span class="price">${naira(x.price)}</span></div>
- <p>${x.desc}</p><button class="add-btn" data-add="${x.id}">Add to bag +</button></div></article>`).join("");
+
+function whatsappLink(message) {
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
+
+function renderMenu(filter = "all") {
+  const visible = items.filter((item) => filter === "all" || item.category === filter);
+  grid.innerHTML = visible.map((item) => `
+    <article class="menu-card">
+      <div class="food-art ${item.category}">
+        <img src="${item.image}" alt="${item.alt}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');">
+        <span class="photo-tag">${item.reference ? "Reference photo" : "Menu photo"}</span>
+      </div>
+      <div class="card-content">
+        <div class="card-top">
+          <h3>${item.name}</h3>
+          <span class="price">${item.price === null ? item.priceText : naira(item.price)}</span>
+        </div>
+        <p>${item.desc}</p>
+        ${item.quoteOnly
+          ? `<button class="add-btn" data-quote="${item.id}">Request a package ↗</button>`
+          : `<button class="add-btn" data-add="${item.id}">Add to bag +</button>`}
+      </div>
+    </article>`).join("");
+}
+
 renderMenu();
-document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{
- document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderMenu(b.dataset.filter);
-}));
-grid.addEventListener("click",e=>{const id=Number(e.target.dataset.add);if(!id)return;const found=cart.find(x=>x.id===id);found?found.qty++:cart.push({id,qty:1});renderCart();});
-const panel=document.getElementById("cartPanel"),backdrop=document.getElementById("cartBackdrop");
-function openCart(){panel.classList.add("open");backdrop.classList.add("open")}
-function closeCart(){panel.classList.remove("open");backdrop.classList.remove("open")}
-document.getElementById("cartFab").onclick=openCart;document.getElementById("closeCart").onclick=closeCart;backdrop.onclick=closeCart;
-function renderCart(){
- const count=cart.reduce((s,x)=>s+x.qty,0),total=cart.reduce((s,x)=>s+items.find(i=>i.id===x.id).price*x.qty,0);
- document.getElementById("cartCount").textContent=count;document.getElementById("cartTotal").textContent=naira(total);
- document.getElementById("cartItems").innerHTML=cart.length?cart.map(c=>{const i=items.find(x=>x.id===c.id);return `<div class="cart-row"><div><strong>${i.name}</strong>${naira(i.price)}<div class="qty"><button data-change="${i.id}" data-delta="-1">−</button><span>${c.qty}</span><button data-change="${i.id}" data-delta="1">+</button></div></div><b>${naira(i.price*c.qty)}</b></div>`}).join(""):'<p class="empty-cart">Your bag is waiting for something delicious.</p>';
+
+document.querySelectorAll(".filter").forEach((button) => {
+  button.addEventListener("click", () => {
+    document.querySelectorAll(".filter").forEach((item) => item.classList.remove("active"));
+    button.classList.add("active");
+    renderMenu(button.dataset.filter);
+  });
+});
+
+grid.addEventListener("click", (event) => {
+  const addButton = event.target.closest("[data-add]");
+  const quoteButton = event.target.closest("[data-quote]");
+
+  if (quoteButton) {
+    const message = `Hello ${BUSINESS_NAME}! I'd like to ask about your food packages. Please send me the available options and prices.`;
+    window.open(whatsappLink(message), "_blank", "noopener");
+    return;
+  }
+
+  if (!addButton) return;
+  const id = Number(addButton.dataset.add);
+  const selected = cart.find((item) => item.id === id);
+  if (selected) selected.qty += 1;
+  else cart.push({ id, qty: 1 });
+  renderCart();
+});
+
+const panel = document.getElementById("cartPanel");
+const backdrop = document.getElementById("cartBackdrop");
+function openCart() { panel.classList.add("open"); backdrop.classList.add("open"); }
+function closeCart() { panel.classList.remove("open"); backdrop.classList.remove("open"); }
+document.getElementById("cartFab").addEventListener("click", openCart);
+document.getElementById("closeCart").addEventListener("click", closeCart);
+backdrop.addEventListener("click", closeCart);
+
+function renderCart() {
+  const count = cart.reduce((sum, item) => sum + item.qty, 0);
+  const total = cart.reduce((sum, cartItem) => {
+    const product = items.find((item) => item.id === cartItem.id);
+    return sum + product.price * cartItem.qty;
+  }, 0);
+
+  document.getElementById("cartCount").textContent = count;
+  document.getElementById("cartTotal").textContent = naira(total);
+
+  document.getElementById("cartItems").innerHTML = cart.length
+    ? cart.map((cartItem) => {
+      const product = items.find((item) => item.id === cartItem.id);
+      return `<div class="cart-row">
+        <div><strong>${product.name}</strong>${naira(product.price)}
+          <div class="qty">
+            <button type="button" aria-label="Remove one ${product.name}" data-change="${product.id}" data-delta="-1">−</button>
+            <span>${cartItem.qty}</span>
+            <button type="button" aria-label="Add one ${product.name}" data-change="${product.id}" data-delta="1">+</button>
+          </div>
+        </div>
+        <b>${naira(product.price * cartItem.qty)}</b>
+      </div>`;
+    }).join("")
+    : '<p class="empty-cart">Your bag is waiting for something delicious.</p>';
 }
-document.getElementById("cartItems").addEventListener("click",e=>{const id=Number(e.target.dataset.change);if(!id)return;const c=cart.find(x=>x.id===id);c.qty+=Number(e.target.dataset.delta);if(c.qty<=0)cart=cart.filter(x=>x.id!==id);renderCart();});
-document.getElementById("whatsappOrder").onclick=()=>{
- if(!cart.length){alert("Add something to your bag first.");return;}
- const total=cart.reduce((s,x)=>s+items.find(i=>i.id===x.id).price*x.qty,0);
- const lines=cart.map(c=>{const i=items.find(x=>x.id===c.id);return `${c.qty} x ${i.name} — ${naira(i.price*c.qty)}`});
- const msg=`Hello Fura De Nono & Grills! I'd like to place an order:\n\n${lines.join("\n")}\n\nSubtotal: ${naira(total)}\nPlease confirm availability, delivery fee and payment details.`;
- // Replace with the business WhatsApp number after confirming the correct number.
- const whatsappNumber="2348076615521";
- window.open(`https://wa.me/${whatsappNumber}?text=${encodeURIComponent(msg)}`,"_blank");
-};
-document.getElementById("year").textContent=new Date().getFullYear();
+
+document.getElementById("cartItems").addEventListener("click", (event) => {
+  const button = event.target.closest("[data-change]");
+  if (!button) return;
+  const id = Number(button.dataset.change);
+  const selected = cart.find((item) => item.id === id);
+  if (!selected) return;
+  selected.qty += Number(button.dataset.delta);
+  if (selected.qty <= 0) cart = cart.filter((item) => item.id !== id);
+  renderCart();
+});
+
+document.getElementById("whatsappOrder").addEventListener("click", () => {
+  if (!cart.length) {
+    alert("Add something to your bag first.");
+    return;
+  }
+  const total = cart.reduce((sum, cartItem) => {
+    const product = items.find((item) => item.id === cartItem.id);
+    return sum + product.price * cartItem.qty;
+  }, 0);
+  const lines = cart.map((cartItem) => {
+    const product = items.find((item) => item.id === cartItem.id);
+    return `${cartItem.qty} x ${product.name} — ${naira(product.price * cartItem.qty)}`;
+  });
+  const message = `Hello ${BUSINESS_NAME}! I'd like to place an order:\n\n${lines.join("\n")}\n\nSubtotal: ${naira(total)}\nPlease confirm availability, delivery fee and payment details.`;
+  window.open(whatsappLink(message), "_blank", "noopener");
+});
+
+document.getElementById("year").textContent = new Date().getFullYear();
 renderCart();
