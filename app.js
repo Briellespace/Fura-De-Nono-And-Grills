@@ -63,7 +63,7 @@ const items = [
   { id: 1, name: "Fura Milk", category: "fura", price: 3500, desc: "Our signature fura de nono — rich, creamy and refreshing.", image: PHOTO.milk35, alt: "Nono Milk in the approved 35 CL wooden bottle", photoContain: true },
   { id: 2, name: "Fura Milk Extra", category: "fura", price: 6000, desc: "A fuller serving for an even more satisfying fura moment.", image: PHOTO.milk75, alt: "Nono Milk in the approved 75 CL wooden bottle", photoContain: true },
   { id: 3, name: "Fura Milk & Fruits", category: "fura", price: 14200, desc: "Our fura favourite with a fruity twist.", gallery: [PHOTO.furaFruitsOverhead, PHOTO.furaFruitsFront], galleryAlt: ["Overhead view of the wooden Fura Milk & Fruits mug with fruit milk inside", "Front view of the wooden Fura Milk & Fruits mug"], photoLabel: "Fura Milk & Fruits" },
-  { id: 4, name: "Fura De Nono Special", category: "fura", price: 30000, desc: "A special house-style fura de nono experience.", image: PHOTO.furaSpecial, alt: "Fura De Nono Special served in the approved wooden bowl with millet balls, milk, fresh fruit and a wooden spoon", photoLabel: "Fura De Nono Special" },
+  { id: 4, name: "Fura De Nono Special", category: "fura", price: 30000, desc: "A special house-style fura de nono experience.", image: PHOTO.furaSpecial, alt: "Fura De Nono Special served in the approved wooden bowl with millet balls, milk, fresh fruit and a wooden spoon", photoLabel: "Fura De Nono Special", photoContain: true },
   { id: 5, name: "Fura De Nono Shake", category: "fura", price: 12000, desc: "A cool, creamy shake inspired by our signature drink.", image: PHOTO.shake, alt: "Fura De Nono Shake in the approved wooden cup with clear dome lid and millet balls", photoContain: true },
   { id: 6, name: "Grilled Salmon", category: "grills", price: 38000, desc: "Grilled salmon, a seafood favourite.", image: PHOTO.salmon, alt: "Juicy grilled salmon on an engraved wooden serving plate with matching wooden fork and knife" },
   { id: 7, name: "Grilled Chicken", category: "grills", price: 16600, desc: "A juicy grilled chicken favourite.", image: PHOTO.chicken, alt: "Grilled chicken with vegetables; reference photograph", reference: true },
@@ -88,7 +88,7 @@ function whatsappLink(message) {
 function renderMenu(filter = "all") {
   const visible = items.filter((item) => filter === "all" || item.category === filter);
   grid.innerHTML = visible.map((item) => `
-    <article class="menu-card">
+    <article class="menu-card${item.gallery ? " menu-card-gallery" : ""}">
       ${item.gallery
         ? `<div class="food-art ${item.category} product-image-gallery">
             ${item.gallery.map((source, index) => `<div class="gallery-frame"><img ${source.startsWith("split:") ? `data-split-image="${source.slice(6)}"` : `src="${source}"`} alt="${item.galleryAlt[index]}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');"></div>`).join("")}
