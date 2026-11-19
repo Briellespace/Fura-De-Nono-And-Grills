@@ -90,7 +90,7 @@ function renderMenu(filter = "all") {
   grid.innerHTML = visible.map((item) => `
     <article class="menu-card${item.gallery && !item.gallerySwipe ? " menu-card-gallery" : ""}${item.gallerySwipe ? " menu-card-swipe" : ""}">
       ${item.gallery
-        ? `<div class="food-art ${item.category} product-image-gallery">
+        ? `<div class="food-art ${item.category} product-image-gallery${item.gallerySwipe ? " product-image-gallery-swipe" : ""}">
             ${item.gallery.map((source, index) => `<div class="gallery-frame"><img ${source.startsWith("split:") ? `data-split-image="${source.slice(6)}"` : `src="${source}"`} alt="${item.galleryAlt[index]}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');"></div>`).join("")}
             <span class="photo-tag">${item.photoLabel || item.name}</span>
           </div>`
