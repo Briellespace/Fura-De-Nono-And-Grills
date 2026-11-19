@@ -277,3 +277,86 @@ footer > small { display: block; width: 100%; }
     height: 132px;
   }
 }
+
+
+/* Keep the original two-up fruit-mug gallery unchanged; swipe only the grill galleries. */
+.food-art.product-image-gallery:not(.product-image-gallery-swipe) {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px;
+  overflow: hidden;
+}
+.food-art.product-image-gallery:not(.product-image-gallery-swipe) .gallery-frame {
+  flex: initial;
+  width: auto;
+  min-width: 0;
+  height: 100%;
+  scroll-snap-align: none;
+  background: #f8efe2;
+}
+.food-art.product-image-gallery:not(.product-image-gallery-swipe) .gallery-frame img {
+  object-fit: contain;
+}
+
+/* Grilled chicken and beef: one complete plate photo per horizontal swipe. */
+.food-art.product-image-gallery-swipe {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  height: 240px;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #8a5b38 #ead9c1;
+}
+.food-art.product-image-gallery-swipe .gallery-frame {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  display: grid;
+  place-items: center;
+  overflow: hidden;
+  scroll-snap-align: start;
+  background: #3d2618;
+}
+.food-art.product-image-gallery-swipe .gallery-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+  transition: none;
+}
+.food-art.product-image-gallery-swipe::-webkit-scrollbar {
+  height: 5px;
+}
+.food-art.product-image-gallery-swipe::-webkit-scrollbar-track {
+  background: #ead9c1;
+}
+.food-art.product-image-gallery-swipe::-webkit-scrollbar-thumb {
+  background: #8a5b38;
+  border-radius: 8px;
+}
+.menu-card.menu-card-swipe {
+  grid-column: auto;
+}
+@media(max-width:800px) {
+  .food-art.product-image-gallery-swipe {
+    height: 155px;
+  }
+  .menu-grid .menu-card.menu-card-swipe {
+    grid-column: auto;
+  }
+}
+@media(max-width:430px) {
+  .food-art.product-image-gallery-swipe {
+    height: 132px;
+  }
+}
