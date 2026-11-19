@@ -134,3 +134,7 @@ footer > small { display: block; width: 100%; }
   font: 600 11px "DM Sans", sans-serif;
   text-align: center;
 }
+
+
+/* Keep the branded wooden bottle and shake concepts fully visible in their menu cards. */
+.food-art.product-image-contain img { object-fit: contain; padding: 6px; }
