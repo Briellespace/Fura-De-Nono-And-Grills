@@ -6,6 +6,8 @@ const WHATSAPP_NUMBER = "2348076615521";
 
 const PHOTO = {
   fura: "assets/fura-from-menu.jpg",
+  furaFruitsOverhead: "split:furaFruitsOverhead",
+  furaFruitsFront: "split:furaFruitsFront",
   milk35: "assets/nono-milk-35cl.webp",
   milk75: "assets/nono-milk-75cl.webp",
   shake: "split:shake",
@@ -37,7 +39,9 @@ const IMAGE_PARTS = {
     "assets/image-parts/shake-01.txt",
     "assets/image-parts/shake-02.txt",
     "assets/image-parts/shake-03.txt"
-  ]
+  ],
+  furaFruitsOverhead: ["assets/image-parts/fura-milk-fruits-overhead.txt"],
+  furaFruitsFront: ["assets/image-parts/fura-milk-fruits-front.txt"]
 };
 
 const imagePartCache = new Map();
@@ -57,7 +61,7 @@ async function loadImageParts(key) {
 const items = [
   { id: 1, name: "Fura Milk", category: "fura", price: 3500, desc: "Our signature fura de nono — rich, creamy and refreshing.", image: PHOTO.milk35, alt: "Nono Milk in the approved 35 CL wooden bottle", photoContain: true },
   { id: 2, name: "Fura Milk Extra", category: "fura", price: 6000, desc: "A fuller serving for an even more satisfying fura moment.", image: PHOTO.milk75, alt: "Nono Milk in the approved 75 CL wooden bottle", photoContain: true },
-  { id: 3, name: "Fura Milk & Fruits", category: "fura", price: 14200, desc: "Our fura favourite with a fruity twist.", image: PHOTO.fura, alt: "Fura de nono serving shown in the supplied menu artwork" },
+  { id: 3, name: "Fura Milk & Fruits", category: "fura", price: 14200, desc: "Our fura favourite with a fruity twist.", gallery: [PHOTO.furaFruitsOverhead, PHOTO.furaFruitsFront], galleryAlt: ["Overhead view of the wooden Fura Milk & Fruits mug with fruit milk inside", "Front view of the wooden Fura Milk & Fruits mug"], photoLabel: "Fura Milk & Fruits" },
   { id: 4, name: "Fura De Nono Special", category: "fura", price: 30000, desc: "A special house-style fura de nono experience.", image: PHOTO.fura, alt: "Fura de nono serving shown in the supplied menu artwork" },
   { id: 5, name: "Fura De Nono Shake", category: "fura", price: 12000, desc: "A cool, creamy shake inspired by our signature drink.", image: PHOTO.shake, alt: "Fura De Nono Shake in the approved wooden cup with clear dome lid and millet balls", photoContain: true },
   { id: 6, name: "Grilled Salmon", category: "grills", price: 38000, desc: "Grilled salmon, a seafood favourite.", image: PHOTO.salmon, alt: "Juicy grilled salmon on an engraved wooden serving plate with matching wooden fork and knife" },
@@ -84,10 +88,15 @@ function renderMenu(filter = "all") {
   const visible = items.filter((item) => filter === "all" || item.category === filter);
   grid.innerHTML = visible.map((item) => `
     <article class="menu-card">
-      <div class="food-art ${item.category}${item.photoContain ? " product-image-contain" : ""}">
-        <img ${item.image.startsWith("split:") ? `data-split-image="${item.image.slice(6)}"` : `src="${item.image}"`} alt="${item.alt}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');">
-        <span class="photo-tag">${item.photoLabel || item.name}</span>
-      </div>
+      ${item.gallery
+        ? `<div class="food-art ${item.category} product-image-gallery">
+            ${item.gallery.map((source, index) => `<div class="gallery-frame"><img ${source.startsWith("split:") ? `data-split-image="${source.slice(6)}"` : `src="${source}"`} alt="${item.galleryAlt[index]}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');"></div>`).join("")}
+            <span class="photo-tag">${item.photoLabel || item.name}</span>
+          </div>`
+        : `<div class="food-art ${item.category}${item.photoContain ? " product-image-contain" : ""}">
+            <img ${item.image.startsWith("split:") ? `data-split-image="${item.image.slice(6)}"` : `src="${item.image}"`} alt="${item.alt}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');">
+            <span class="photo-tag">${item.photoLabel || item.name}</span>
+          </div>`}
       <div class="card-content">
         <div class="card-top">
           <h3>${item.name}</h3>
