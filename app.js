@@ -14,7 +14,7 @@ const PHOTO = {
   cupcakes: "https://images.unsplash.com/photo-1573050435329-27ff3181380c?auto=format&fit=crop&w=1000&q=82",
   veggieCupcakes: "https://images.pexels.com/photos/34501162/pexels-photo-34501162.jpeg?auto=compress&cs=tinysrgb&w=1000",
   smoothie: "https://images.unsplash.com/photo-1712056407284-c1eda76e7bcd?auto=format&fit=crop&w=1000&q=82",
-  coffee: "https://images.unsplash.com/photo-1571658734974-e513dfb8b86b?auto=format&fit=crop&w=1000&q=82",
+  coffee: "assets/coffee-wooden-cup.webp",
   packages: "assets/menu-reference.jpg"
 };
 
@@ -32,7 +32,7 @@ const items = [
   { id: 11, name: "Sweet Cupcakes", category: "sides", price: 7500, desc: "A sweet little treat for any occasion.", image: PHOTO.cupcakes, alt: "Assorted cupcakes; reference photograph", reference: true },
   { id: 12, name: "Veggie Cupcakes", category: "sides", price: 6500, desc: "A savoury veggie option from our menu.", image: PHOTO.veggieCupcakes, alt: "Savoury vegetable muffins; reference photograph", reference: true },
   { id: 13, name: "Smoothies", category: "sides", price: 4000, desc: "A refreshing sip made for your day.", image: PHOTO.smoothie, alt: "Creamy fruit smoothie; reference photograph", reference: true },
-  { id: 14, name: "Coffee (By Choice)", category: "sides", price: 10000, desc: "Choose your coffee preference when ordering.", image: PHOTO.coffee, alt: "Coffee in a ceramic cup; reference photograph", reference: true },
+  { id: 14, name: "Coffee (By Choice)", category: "sides", price: 10000, desc: "Choose your coffee preference when ordering.", image: PHOTO.coffee, alt: "Traditional coffee with a heart-shaped milk design in a wooden Fura De Nono & Grills cup and saucer; packaging concept", imageLabel: "Wooden cup concept" },
   { id: 15, name: "Food Packages", category: "sides", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills menu artwork; package options are arranged by order", quoteOnly: true }
 ];
 
@@ -50,7 +50,7 @@ function renderMenu(filter = "all") {
     <article class="menu-card">
       <div class="food-art ${item.category}">
         <img src="${item.image}" alt="${item.alt}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');">
-        <span class="photo-tag">${item.reference ? "Reference photo" : "Menu photo"}</span>
+        <span class="photo-tag">${item.imageLabel || (item.reference ? "Reference photo" : "Menu photo")}</span>
       </div>
       <div class="card-content">
         <div class="card-top">
