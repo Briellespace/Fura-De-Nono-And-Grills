@@ -28,12 +28,12 @@ const items = [
   { id: 7, name: "Grilled Chicken", category: "grills", price: 16600, desc: "A juicy grilled chicken favourite.", image: PHOTO.chicken, alt: "Grilled chicken with vegetables; reference photograph", reference: true },
   { id: 8, name: "Grilled Beef", category: "grills", price: 7800, desc: "A satisfying grilled beef option.", image: PHOTO.beef, alt: "Beef steaks grilling over a flame; reference photograph", reference: true },
   { id: 9, name: "Spicy Chicken", category: "grills", price: 9400, desc: "Chicken with a bold, spicy finish.", image: PHOTO.spicyChicken, alt: "Seasoned grilled chicken skewers; reference photograph", reference: true },
-  { id: 10, name: "Seafood Platter", category: "grills", price: 66700, desc: "A generous seafood selection for sharing.", image: PHOTO.seafood, alt: "Seafood platter with lobster, shrimp and scallops; reference photograph", reference: true },
+  { id: 10, name: "Seafood Platter", category: "grills", price: 66700, desc: "A generous seafood selection for sharing.", image: PHOTO.seafood, alt: "Seafood platter with lobster, shrimp and scallops", photoLabel: "Seafood" },
   { id: 11, name: "Sweet Cupcakes", category: "sides", price: 7500, desc: "A sweet little treat for any occasion.", image: PHOTO.cupcakes, alt: "Assorted cupcakes; reference photograph", reference: true },
   { id: 12, name: "Veggie Cupcakes", category: "sides", price: 6500, desc: "A savoury veggie option from our menu.", image: PHOTO.veggieCupcakes, alt: "Savoury vegetable muffins; reference photograph", reference: true },
-  { id: 13, name: "Smoothies", category: "sides", price: 4000, desc: "A refreshing sip made for your day.", image: PHOTO.smoothie, alt: "Creamy fruit smoothie; reference photograph", reference: true },
-  { id: 14, name: "Coffee (By Choice)", category: "sides", price: 10000, desc: "Choose your coffee preference when ordering.", image: PHOTO.coffee, alt: "Traditional coffee with a heart-shaped milk design in a wooden Fura De Nono & Grills cup and saucer; packaging concept", imageLabel: "Wooden cup concept" },
-  { id: 15, name: "Food Packages", category: "sides", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills menu artwork; package options are arranged by order", quoteOnly: true }
+  { id: 13, name: "Smoothies", category: "sides", price: 4000, desc: "A refreshing sip made for your day.", image: PHOTO.smoothie, alt: "Creamy fruit smoothie", photoLabel: "Smoothies" },
+  { id: 14, name: "Coffee (By Choice)", category: "sides", price: 10000, desc: "Choose your coffee preference when ordering.", image: PHOTO.coffee, alt: "Traditional coffee with a heart-shaped milk design in a wooden Fura De Nono & Grills cup and saucer; packaging concept", photoLabel: "Coffee" },
+  { id: 15, name: "Food Packages", category: "sides", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills menu artwork; package options are arranged by order", photoLabel: "Menu", quoteOnly: true }
 ];
 
 const naira = (amount) => "₦" + amount.toLocaleString("en-NG");
@@ -50,7 +50,7 @@ function renderMenu(filter = "all") {
     <article class="menu-card">
       <div class="food-art ${item.category}">
         <img src="${item.image}" alt="${item.alt}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');">
-        <span class="photo-tag">${item.imageLabel || (item.reference ? "Reference photo" : "Menu photo")}</span>
+        <span class="photo-tag">${item.photoLabel || item.name}</span>
       </div>
       <div class="card-content">
         <div class="card-top">
