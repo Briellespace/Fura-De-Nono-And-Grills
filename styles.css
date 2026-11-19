@@ -215,3 +215,65 @@ footer > small { display: block; width: 100%; }
     padding: 6px;
   }
 }
+
+
+/* Product galleries: one photograph at a time, swipe horizontally to see the next view. */
+.food-art.product-image-gallery {
+  display: flex;
+  flex-direction: row;
+  align-items: stretch;
+  gap: 0;
+  padding: 0;
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-snap-type: x mandatory;
+  scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  scrollbar-width: thin;
+  scrollbar-color: #8a5b38 #ead9c1;
+}
+.food-art.product-image-gallery .gallery-frame {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  height: 100%;
+  overflow: hidden;
+  scroll-snap-align: start;
+}
+.food-art.product-image-gallery .gallery-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  transition: none;
+}
+.menu-card.menu-card-swipe {
+  grid-column: auto;
+}
+.menu-card.menu-card-swipe .food-art.product-image-gallery {
+  height: 205px;
+}
+.food-art.product-image-gallery::-webkit-scrollbar {
+  height: 5px;
+}
+.food-art.product-image-gallery::-webkit-scrollbar-track {
+  background: #ead9c1;
+}
+.food-art.product-image-gallery::-webkit-scrollbar-thumb {
+  background: #8a5b38;
+  border-radius: 8px;
+}
+@media(max-width:800px) {
+  .menu-grid .menu-card.menu-card-swipe {
+    grid-column: auto;
+  }
+  .menu-card.menu-card-swipe .food-art.product-image-gallery {
+    height: 155px;
+  }
+}
+@media(max-width:430px) {
+  .menu-card.menu-card-swipe .food-art.product-image-gallery {
+    height: 132px;
+  }
+}
