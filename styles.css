@@ -168,3 +168,50 @@ footer > small { display: block; width: 100%; }
 @media(max-width:800px) {
   .food-art.product-image-gallery { height: 160px; gap: 4px; padding: 5px; }
 }
+
+
+/* Give the approved two-view Fura Milk & Fruits gallery enough room to show both mug photos clearly. */
+.menu-card.menu-card-gallery {
+  grid-column: span 2;
+}
+.food-art.product-image-gallery {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 10px;
+  padding: 10px;
+  height: 270px;
+  background: linear-gradient(135deg, #f2e5d2, #e6d0b0);
+}
+.food-art.product-image-gallery .gallery-frame {
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+  display: grid;
+  place-items: center;
+  background: #f8efe2;
+}
+.food-art.product-image-gallery .gallery-frame img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  object-position: center;
+}
+@media(max-width:800px) {
+  .menu-grid .menu-card.menu-card-gallery {
+    grid-column: 1 / -1;
+  }
+  .food-art.product-image-gallery {
+    height: 255px;
+    gap: 8px;
+    padding: 8px;
+  }
+}
+@media(max-width:430px) {
+  .food-art.product-image-gallery {
+    height: 225px;
+    gap: 6px;
+    padding: 6px;
+  }
+}
