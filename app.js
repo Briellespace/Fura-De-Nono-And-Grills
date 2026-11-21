@@ -92,7 +92,7 @@ function renderMenu(filter = "all") {
   const visible = items.filter((item) => filter === "all" || item.category === filter);
   if (filter === "desserts") visible.sort((a, b) => (a.id === 16 ? -1 : 0) - (b.id === 16 ? -1 : 0));
   grid.innerHTML = visible.map((item) => `
-    ${"${item.sectionTitle ? `<div class=\"menu-group-title\"><span>${item.sectionTitle}</span></div>` : \"\"}"}
+    ${item.sectionTitle ? `<div class="menu-group-title"><span>${item.sectionTitle}</span></div>` : ""}
     <article class="menu-card${item.gallery && !item.gallerySwipe ? " menu-card-gallery" : ""}${item.gallerySwipe ? " menu-card-swipe" : ""}${item.galleryContain ? " menu-card-bread" : ""}">
       ${item.gallery
         ? `<div class="food-art ${item.category} product-image-gallery${item.gallerySwipe ? " product-image-gallery-swipe" : ""}${item.galleryContain ? " product-image-gallery-contain" : ""}">
