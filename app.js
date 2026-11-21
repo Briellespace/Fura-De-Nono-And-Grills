@@ -23,7 +23,7 @@ const PHOTO = {
   coffee: "assets/coffee-wooden-cup.webp",
   milkBunsView1: "assets/ChatGPT Image Nov 21, 2026, 02_09_17 PM.jpg",
   milkBunsView2: "assets/ChatGPT Image Nov 21, 2026, 02_09_27 PM.jpg",
-  packages: "assets/menu-reference.jpg"
+  packages: "assets/Fura De Nono & Grills Feast.png"
 };
 
 const IMAGE_PARTS = {
@@ -77,7 +77,7 @@ const items = [
   { id: 13, name: "Smoothies", category: "sides", price: 4000, desc: "A refreshing sip made for your day.", image: PHOTO.smoothie, alt: "Creamy fruit smoothie", photoLabel: "Smoothies" },
   { id: 14, name: "Coffee (By Choice)", category: "sides", price: 10000, desc: "Choose your coffee preference when ordering.", image: PHOTO.coffee, alt: "Traditional coffee with a heart-shaped milk design in a wooden Fura De Nono & Grills cup and saucer; packaging concept", photoLabel: "Coffee" },
   { id: 16, name: "Signature Milk Buns", category: "desserts", sectionTitle: "Bread & Snacks", price: null, priceText: "By order", desc: "Soft, fluffy milk buns finished with our small toasted brand mark.", gallery: [PHOTO.milkBunsView1, PHOTO.milkBunsView2], galleryAlt: ["Six branded golden milk buns arranged on a white cooling rack", "Three branded golden milk buns on a dark baking tray"], photoLabel: "Signature Milk Buns", gallerySwipe: true, galleryContain: true, quoteOnly: true, quoteLabel: "Ask about milk buns ↗", quoteMessage: "Hello Fura De Nono & Grills! I'd like to order your Signature Milk Buns. Please let me know the available quantity and price." },
-  { id: 15, name: "Food Packages", category: "packages", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills menu artwork; package options are arranged by order", photoLabel: "Menu", quoteOnly: true }
+  { id: 15, name: "Food Packages", category: "packages", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills food package showcase featuring drinks, grills, seafood, sides and desserts", photoLabel: "Food Packages", quoteOnly: true }
 ];
 
 const naira = (amount) => "₦" + amount.toLocaleString("en-NG");
