@@ -72,12 +72,12 @@ const items = [
   { id: 8, name: "Grilled Beef", category: "grills", price: 7800, desc: "A satisfying grilled beef option.", gallery: ["assets/grilled-beef-view-1.webp", "assets/grilled-beef-view-2.webp"], galleryAlt: ["Juicy grilled beef steak on an engraved wooden serving plate with roasted potatoes, peppers and sauce", "Sliced juicy grilled beef steak on a wooden serving plate with grilled vegetables, fork and knife"], photoLabel: "Grilled Beef", gallerySwipe: true },
   { id: 9, name: "Spicy Chicken", category: "grills", price: 9400, desc: "Chicken with a bold, spicy finish.", image: PHOTO.spicyChicken, alt: "Seasoned grilled chicken skewers; reference photograph", reference: true },
   { id: 10, name: "Seafood Platter", category: "grills", price: 66700, desc: "A generous seafood selection for sharing.", image: PHOTO.seafood, alt: "Seafood platter in a wooden tray with engraved lid", photoLabel: "Seafood" },
-  { id: 11, name: "Sweet Cupcakes", category: "sides", price: 7500, desc: "A sweet little treat for any occasion.", image: PHOTO.cupcakes, alt: "Assorted cupcakes; reference photograph", reference: true },
-  { id: 12, name: "Veggie Cupcakes", category: "sides", price: 6500, desc: "A savoury veggie option from our menu.", image: PHOTO.veggieCupcakes, alt: "Savoury vegetable muffins; reference photograph", reference: true },
+  { id: 11, name: "Sweet Cupcakes", category: "desserts", sectionTitle: "Sweet Treats", price: 7500, desc: "A sweet little treat for any occasion.", image: PHOTO.cupcakes, alt: "Assorted cupcakes; reference photograph", reference: true },
+  { id: 12, name: "Veggie Cupcakes", category: "desserts", sectionTitle: "Sweet Treats", price: 6500, desc: "A savoury veggie option from our menu.", image: PHOTO.veggieCupcakes, alt: "Savoury vegetable muffins; reference photograph", reference: true },
   { id: 13, name: "Smoothies", category: "sides", price: 4000, desc: "A refreshing sip made for your day.", image: PHOTO.smoothie, alt: "Creamy fruit smoothie", photoLabel: "Smoothies" },
   { id: 14, name: "Coffee (By Choice)", category: "sides", price: 10000, desc: "Choose your coffee preference when ordering.", image: PHOTO.coffee, alt: "Traditional coffee with a heart-shaped milk design in a wooden Fura De Nono & Grills cup and saucer; packaging concept", photoLabel: "Coffee" },
-  { id: 16, name: "Signature Milk Buns", category: "sides", price: null, priceText: "By order", desc: "Soft, fluffy milk buns finished with our small toasted brand mark.", gallery: [PHOTO.milkBunsView1, PHOTO.milkBunsView2], galleryAlt: ["Three branded golden milk buns on a dark baking tray", "Branded golden milk buns arranged on a white cooling rack"], photoLabel: "Signature Milk Buns", gallerySwipe: true, galleryContain: true, quoteOnly: true, quoteLabel: "Ask about milk buns ↗", quoteMessage: "Hello Fura De Nono & Grills! I'd like to order your Signature Milk Buns. Please let me know the available quantity and price." },
-  { id: 15, name: "Food Packages", category: "sides", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills menu artwork; package options are arranged by order", photoLabel: "Menu", quoteOnly: true }
+  { id: 16, name: "Signature Milk Buns", category: "desserts", sectionTitle: "Bread & Snacks", price: null, priceText: "By order", desc: "Soft, fluffy milk buns finished with our small toasted brand mark.", gallery: [PHOTO.milkBunsView1, PHOTO.milkBunsView2], galleryAlt: ["Three branded golden milk buns on a dark baking tray", "Branded golden milk buns arranged on a white cooling rack"], photoLabel: "Signature Milk Buns", gallerySwipe: true, galleryContain: true, quoteOnly: true, quoteLabel: "Ask about milk buns ↗", quoteMessage: "Hello Fura De Nono & Grills! I'd like to order your Signature Milk Buns. Please let me know the available quantity and price." },
+  { id: 15, name: "Food Packages", category: "packages", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills menu artwork; package options are arranged by order", photoLabel: "Menu", quoteOnly: true }
 ];
 
 const naira = (amount) => "₦" + amount.toLocaleString("en-NG");
@@ -90,7 +90,9 @@ function whatsappLink(message) {
 
 function renderMenu(filter = "all") {
   const visible = items.filter((item) => filter === "all" || item.category === filter);
+  if (filter === "desserts") visible.sort((a, b) => (a.id === 16 ? -1 : 0) - (b.id === 16 ? -1 : 0));
   grid.innerHTML = visible.map((item) => `
+    ${"${item.sectionTitle ? `<div class=\"menu-group-title\"><span>${item.sectionTitle}</span></div>` : \"\"}"}
     <article class="menu-card${item.gallery && !item.gallerySwipe ? " menu-card-gallery" : ""}${item.gallerySwipe ? " menu-card-swipe" : ""}${item.galleryContain ? " menu-card-bread" : ""}">
       ${item.gallery
         ? `<div class="food-art ${item.category} product-image-gallery${item.gallerySwipe ? " product-image-gallery-swipe" : ""}${item.galleryContain ? " product-image-gallery-contain" : ""}">
