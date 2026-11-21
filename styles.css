@@ -360,3 +360,37 @@ footer > small { display: block; width: 100%; }
     height: 132px;
   }
 }
+
+
+/* Approved light logo plus the two-view Signature Milk Buns swipe gallery. */
+.brand img,
+.footer-brand img {
+  object-fit: contain;
+  border-radius: 0;
+}
+.brand img {
+  width: 58px;
+  height: 58px;
+  background: var(--paper);
+}
+.footer-brand img {
+  width: 50px;
+  height: 50px;
+}
+.menu-card.menu-card-bread .food-art.product-image-gallery-swipe {
+  height: 250px;
+}
+.food-art.product-image-gallery-contain,
+.food-art.product-image-gallery-contain .gallery-frame {
+  background: #f3e7d7;
+}
+.food-art.product-image-gallery-contain .gallery-frame img {
+  object-fit: contain;
+  padding: 7px;
+}
+@media(max-width:800px) {
+  .menu-card.menu-card-bread .food-art.product-image-gallery-swipe { height: 230px; }
+}
+@media(max-width:430px) {
+  .menu-card.menu-card-bread .food-art.product-image-gallery-swipe { height: 215px; }
+}

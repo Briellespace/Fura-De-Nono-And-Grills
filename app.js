@@ -21,6 +21,8 @@ const PHOTO = {
   veggieCupcakes: "https://images.pexels.com/photos/34501162/pexels-photo-34501162.jpeg?auto=compress&cs=tinysrgb&w=1000",
   smoothie: "https://images.unsplash.com/photo-1712056407284-c1eda76e7bcd?auto=format&fit=crop&w=1000&q=82",
   coffee: "assets/coffee-wooden-cup.webp",
+  milkBunsView1: "assets/signature-milk-buns-view-1.webp",
+  milkBunsView2: "assets/signature-milk-buns-view-2.webp",
   packages: "assets/menu-reference.jpg"
 };
 
@@ -74,6 +76,7 @@ const items = [
   { id: 12, name: "Veggie Cupcakes", category: "sides", price: 6500, desc: "A savoury veggie option from our menu.", image: PHOTO.veggieCupcakes, alt: "Savoury vegetable muffins; reference photograph", reference: true },
   { id: 13, name: "Smoothies", category: "sides", price: 4000, desc: "A refreshing sip made for your day.", image: PHOTO.smoothie, alt: "Creamy fruit smoothie", photoLabel: "Smoothies" },
   { id: 14, name: "Coffee (By Choice)", category: "sides", price: 10000, desc: "Choose your coffee preference when ordering.", image: PHOTO.coffee, alt: "Traditional coffee with a heart-shaped milk design in a wooden Fura De Nono & Grills cup and saucer; packaging concept", photoLabel: "Coffee" },
+  { id: 16, name: "Signature Milk Buns", category: "sides", price: null, priceText: "By order", desc: "Soft, fluffy milk buns finished with our small toasted brand mark.", gallery: [PHOTO.milkBunsView1, PHOTO.milkBunsView2], galleryAlt: ["Three branded golden milk buns on a dark baking tray", "Branded golden milk buns arranged on a white cooling rack"], photoLabel: "Signature Milk Buns", gallerySwipe: true, galleryContain: true, quoteOnly: true, quoteLabel: "Ask about milk buns ↗", quoteMessage: "Hello Fura De Nono & Grills! I'd like to order your Signature Milk Buns. Please let me know the available quantity and price." },
   { id: 15, name: "Food Packages", category: "sides", price: null, priceText: "By order", desc: "Planning a gathering? Ask us about a food package.", image: PHOTO.packages, alt: "Fura De Nono & Grills menu artwork; package options are arranged by order", photoLabel: "Menu", quoteOnly: true }
 ];
 
@@ -88,9 +91,9 @@ function whatsappLink(message) {
 function renderMenu(filter = "all") {
   const visible = items.filter((item) => filter === "all" || item.category === filter);
   grid.innerHTML = visible.map((item) => `
-    <article class="menu-card${item.gallery && !item.gallerySwipe ? " menu-card-gallery" : ""}${item.gallerySwipe ? " menu-card-swipe" : ""}">
+    <article class="menu-card${item.gallery && !item.gallerySwipe ? " menu-card-gallery" : ""}${item.gallerySwipe ? " menu-card-swipe" : ""}${item.galleryContain ? " menu-card-bread" : ""}">
       ${item.gallery
-        ? `<div class="food-art ${item.category} product-image-gallery${item.gallerySwipe ? " product-image-gallery-swipe" : ""}">
+        ? `<div class="food-art ${item.category} product-image-gallery${item.gallerySwipe ? " product-image-gallery-swipe" : ""}${item.galleryContain ? " product-image-gallery-contain" : ""}">
             ${item.gallery.map((source, index) => `<div class="gallery-frame"><img ${source.startsWith("split:") ? `data-split-image="${source.slice(6)}"` : `src="${source}"`} alt="${item.galleryAlt[index]}" loading="lazy" decoding="async" onerror="this.onerror=null;this.style.display='none';this.parentElement.classList.add('photo-unavailable');"></div>`).join("")}
             <span class="photo-tag">${item.photoLabel || item.name}</span>
           </div>`
@@ -105,7 +108,7 @@ function renderMenu(filter = "all") {
         </div>
         <p>${item.desc}</p>
         ${item.quoteOnly
-          ? `<button class="add-btn" data-quote="${item.id}">Request a package ↗</button>`
+          ? `<button class="add-btn" data-quote="${item.id}">${item.quoteLabel || "Request a package ↗"}</button>`
           : `<button class="add-btn" data-add="${item.id}">Add to bag +</button>`}
       </div>
     </article>`).join("");
@@ -135,7 +138,8 @@ grid.addEventListener("click", (event) => {
   const quoteButton = event.target.closest("[data-quote]");
 
   if (quoteButton) {
-    const message = `Hello ${BUSINESS_NAME}! I'd like to ask about your food packages. Please send me the available options and prices.`;
+    const requestedItem = items.find((item) => item.id === Number(quoteButton.dataset.quote));
+    const message = requestedItem?.quoteMessage || `Hello ${BUSINESS_NAME}! I'd like to ask about your food packages. Please send me the available options and prices.`;
     window.open(whatsappLink(message), "_blank", "noopener");
     return;
   }
