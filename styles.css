@@ -394,3 +394,21 @@ footer > small { display: block; width: 100%; }
 @media(max-width:430px) {
   .menu-card.menu-card-bread .food-art.product-image-gallery-swipe { height: 215px; }
 }
+
+
+/* Menu category sub-sections: Bread & Snacks and Sweet Treats */
+.menu-group-title {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin: 18px 0 2px;
+  color: var(--brown);
+  font: 700 22px "Playfair Display", serif;
+}
+.menu-group-title:after {
+  content: "";
+  height: 1px;
+  flex: 1;
+  background: #e6d8c5;
+}
